@@ -1,1 +1,1 @@
-getting started with C-programming
+pointers,arrays and stringd
