@@ -1,14 +1,14 @@
 #include "hash_tables.h"
 
 /**
- * shash_table_create - creates a hash table
+ * hash_table_create - creates a hash table
  * @size: size of the array of linked list in the table
  *
  * Return: shash_table_t struct
  */
-shash_table_t *shash_table_create(unsigned long int size)
+hash_table_t *hash_table_create(unsigned long int size)
 {
-	shash_table_t *sht;
+	hash_table_t *sht;
 
 	if (size == 0)
 		return (NULL);
@@ -29,17 +29,17 @@ shash_table_t *shash_table_create(unsigned long int size)
 }
 
 /**
- * shash_table_set - adds an element to the hash table
+ * hash_table_set - adds an element to the hash table
  * @ht: hash table to add the element to
  * @key: key of the element, will give the index in the array
  * @value: value of the element to store in the array
  *
  * Return: 1 on success, 0 otherwise
  */
-int shash_table_set(shash_table_t *ht, const char *key, const char *value)
+int hash_table_set(shash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int index;
-	shash_node_t *new;
+	hash_node_t *new;
 
 	if (!ht || !key || !strcmp(key, "") || !value)
 		return (0);
@@ -59,12 +59,12 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 /**
  * insert_sort - inserts a node in a sorted doubly
  * linked list
- * @node: shash_node_t to insert
+ * @node: hash_node_t to insert
  * @ht: pointer to the hash table to insert it into
  */
 void insert_sort(shash_node_t *node, shash_table_t *ht)
 {
-	shash_node_t *head = ht->shead;
+	hash_node_t *head = ht->shead;
 
 	if (!head || strcmp(node->key, head->key) < 0)
 	{
@@ -91,14 +91,14 @@ void insert_sort(shash_node_t *node, shash_table_t *ht)
 	head->snext = node;
 }
 /**
- * shash_table_get - retrieves a value associated with a key
+ * hash_table_get - retrieves a value associated with a key
  * @ht: hash table to look into
  * @key: key of the value to retrieve
  *
  * Return: the value associated with the element,
  * or NULL if key couldn’t be found
  */
-char *shash_table_get(const shash_table_t *ht, const char *key)
+char *hash_table_get(const shash_table_t *ht, const char *key)
 {
 	unsigned long int index;
 	shash_node_t *node = NULL;
@@ -120,10 +120,10 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 }
 
 /**
- * shash_table_print - prints a hash table
+ * hash_table_print - prints a hash table
  * @ht: hash table to print
  */
-void shash_table_print(const shash_table_t *ht)
+void hash_table_print(const hash_table_t *ht)
 {
 	shash_node_t *head = NULL;
 
@@ -144,10 +144,10 @@ void shash_table_print(const shash_table_t *ht)
 	printf("}\n");
 }
 /**
- * shash_table_print_rev - prints a hash table in reverse
+ * hash_table_print_rev - prints a hash table in reverse
  * @ht: hash table to print
  */
-void shash_table_print_rev(const shash_table_t *ht)
+void hash_table_print_rev(const shash_table_t *ht)
 {
 	shash_node_t *tail = NULL;
 
@@ -169,10 +169,10 @@ void shash_table_print_rev(const shash_table_t *ht)
 }
 
 /**
- * shash_table_delete - deletes a hash table
+ * hash_table_delete - deletes a hash table
  * @ht: hash table to be deleted
  */
-void shash_table_delete(shash_table_t *ht)
+void hash_table_delete(hash_table_t *ht)
 {
 	if (!ht)
 		return;
@@ -231,7 +231,7 @@ int check_key_s(shash_node_t *ht, const char *key)
  *
  * Return: the address of the new element, or NULL if it fails
  */
-shash_node_t *add_node_s(shash_node_t **head, const char *key,
+hash_node_t *add_node_s(shash_node_t **head, const char *key,
 	const char *value)
 {
 	shash_node_t *new;
